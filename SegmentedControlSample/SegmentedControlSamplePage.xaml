@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SegmentedControlSample" x:Class="SegmentedControlSample.SegmentedControlSamplePage">
+	<StackLayout Margin="20">
+        <local:SegmentedControl ValueChanged="OnValueChanged" SelectedSegment="{Binding CustomPointsSwitch}" x:Name="segControl" HorizontalOptions="End">
+            <local:SegmentedControl.Children>
+                <local:SegmentedControlOption Text="One" />
+                <local:SegmentedControlOption Text="Two" />
+                <local:SegmentedControlOption Text="Three" />
+            </local:SegmentedControl.Children>
+        </local:SegmentedControl>
+
+        <Label Text="{Binding Path=SelectedSegment, StringFormat='Selected Segment: {0}', Source={x:Reference segControl}}" />
+        <Label Text="{Binding Path=SelectedValue, StringFormat='Selected Value: {0}', Source={x:Reference segControl}}" />
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Select One" Command="{Binding SelectCommand}" CommandParameter="0" HorizontalOptions="Start" />
+            <Button Text="Select Two" Command="{Binding SelectCommand}" CommandParameter="1" HorizontalOptions="CenterAndExpand" />
+            <Button Text="Select Three" Command="{Binding SelectCommand}" CommandParameter="2" HorizontalOptions="End" />
+        </StackLayout>
+
+        <Button Text="Set selection using SelectedValue" Clicked="Handle_Clicked" />
+    </StackLayout>
+</ContentPage>
